@@ -1,0 +1,329 @@
+<!DOCTYPE html><html><head>
+	<title>
+	使用 CloudMesh 轻松实践 Service Mesh · SOFAStack
+</title>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="SOFAStack is a Scalable Open Financial Architecture for building cloud native applications">
+
+<meta name="generator" content="Hugo 0.55.5"><link rel="shortcut icon" href="https://gw.alipayobjects.com/os/q/cms/images/jqu9346l/4ba95631-2489-4885-881f-bc7f8d787d5e_w64_h61.png" type="image/png">
+
+<link href="https://unpkg.com/purecss@1.0.0/build/base-min.css" rel="stylesheet">
+
+
+
+<link href="/sofa2/css/main.css" rel="stylesheet" src="/sofa2/css/main.css">
+<link href="/sofa2/css/zoom-image.css" rel="stylesheet" src="/sofa2/css/zoom-image.css">
+
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="/sofa2/js/iconfont.js" href="/sofa2/js/iconfont.js"></script>
+<script src="/sofa2/js/highlight.pack.js" href="/sofa2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>window.SITE_LANGUAGE = "zh"</script>
+<script src="/sofa2/js/app.js" href="/sofa2/js/app.js"></script>
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-142131411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+<body><svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;"><symbol id="icon-ictick" viewBox="0 0 1024 1024"><path d="M980.96 299.904l-528.864 528.864c-24.384 24.384-61.536 28.192-89.952 11.392-5.216-3.104-10.208-6.912-14.72-11.392 0-0.032 0-0.032 0-0.032l-304.448-304.416c-28.896-28.896-28.896-75.808 0-104.704s75.744-28.896 104.672 0l252.192 252.192 476.48-476.576c28.896-28.896 75.744-28.896 104.64 0 28.928 28.896 28.928 75.808 0 104.672l0 0z"></path></symbol><symbol id="icon-search" viewBox="0 0 1024 1024"><path d="M927.104 866.816l-195.626667-208.768C780.629333 601.770667 810.666667 528.426667 810.666667 448 810.666667 271.530667 667.136 128 490.666667 128S170.666667 271.530667 170.666667 448 314.197333 768 490.666667 768c65.322667 0 126.08-19.754667 176.768-53.461333l197.461333 210.688L927.104 866.816zM256 448C256 318.592 361.258667 213.333333 490.666667 213.333333S725.333333 318.592 725.333333 448 620.074667 682.666667 490.666667 682.666667 256 577.408 256 448z"></path></symbol><symbol id="icon-menu1" viewBox="0 0 1024 1024"><path d="M225.854934 210.432687l-93.071745 0c-2.49789 0-4.523013 2.025123-4.523013 4.523013l0 93.071745c0 2.49789 2.025123 4.523013 4.523013 4.523013l93.071745 0c2.49789 0 4.523013-2.025123 4.523013-4.523013l0-93.071745C230.377948 212.45781 228.352825 210.432687 225.854934 210.432687z"></path><path d="M868.248703 210.432687 302.545594 210.432687c-15.182794 0-27.491121 2.025123-27.491121 4.523013l0 93.071745c0 2.49789 12.308327 4.523013 27.491121 4.523013L868.248703 312.550459c15.182794 0 27.491121-2.025123 27.491121-4.523013l0-93.071745C895.739824 212.45781 883.431497 210.432687 868.248703 210.432687z"></path><path d="M225.854934 461.738269l-93.071745 0c-2.49789 0-4.523013 2.025123-4.523013 4.523013l0 93.071745c0 2.49789 2.025123 4.523013 4.523013 4.523013l93.071745 0c2.49789 0 4.523013-2.025123 4.523013-4.523013l0-93.071745C230.377948 463.763392 228.352825 461.738269 225.854934 461.738269z"></path><path d="M868.248703 461.738269 302.545594 461.738269c-15.182794 0-27.491121 2.025123-27.491121 4.523013l0 93.071745c0 2.49789 12.308327 4.523013 27.491121 4.523013L868.248703 563.856042c15.182794 0 27.491121-2.025123 27.491121-4.523013l0-93.071745C895.739824 463.763392 883.431497 461.738269 868.248703 461.738269z"></path><path d="M225.854934 711.448518l-93.071745 0c-2.49789 0-4.523013 2.025123-4.523013 4.523013l0 93.071745c0 2.49789 2.025123 4.523013 4.523013 4.523013l93.071745 0c2.49789 0 4.523013-2.025123 4.523013-4.523013l0-93.071745C230.377948 713.473641 228.352825 711.448518 225.854934 711.448518z"></path><path d="M868.248703 711.448518 302.545594 711.448518c-15.182794 0-27.491121 2.025123-27.491121 4.523013l0 93.071745c0 2.49789 12.308327 4.523013 27.491121 4.523013L868.248703 813.56629c15.182794 0 27.491121-2.025123 27.491121-4.523013l0-93.071745C895.739824 713.473641 883.431497 711.448518 868.248703 711.448518z"></path></symbol><symbol id="icon-close" viewBox="0 0 1024 1024"><path d="M556.8 512l265.6-265.6c12.8-12.8 12.8-32 0-44.8s-32-12.8-44.8 0L512 467.2 246.4 201.6c-12.8-12.8-32-12.8-44.8 0s-12.8 32 0 44.8l265.6 265.6-265.6 265.6c-12.8 12.8-12.8 32 0 44.8 6.4 6.4 12.8 9.6 22.4 9.6s16-3.2 22.4-9.6l265.6-265.6 265.6 265.6c6.4 6.4 16 9.6 22.4 9.6s16-3.2 22.4-9.6c12.8-12.8 12.8-32 0-44.8L556.8 512z"></path></symbol><symbol id="icon-menu" viewBox="0 0 1024 1024"><path d="M128 298.666667h768a42.666667 42.666667 0 0 0 0-85.333334H128a42.666667 42.666667 0 0 0 0 85.333334z m768 170.666666H128a42.666667 42.666667 0 0 0 0 85.333334h768a42.666667 42.666667 0 0 0 0-85.333334z m0 256H128a42.666667 42.666667 0 0 0 0 85.333334h768a42.666667 42.666667 0 0 0 0-85.333334z"></path></symbol><symbol id="icon-ARROW" viewBox="0 0 1024 1024"><path d="M318.73024 836.32128a20.41856 20.41856 0 0 0 28.95872 0l307.2-307.2a20.45952 20.45952 0 0 0 0-28.95872l-307.2-307.2a20.45952 20.45952 0 1 0-28.95872 28.95872l292.72064 292.72064-292.72064 292.72064a20.45952 20.45952 0 0 0 0 28.95872z" fill="#231F20"></path></symbol><symbol id="icon-copy" viewBox="0 0 1024 1024"><path d="M877.714286 0H265.142857c-5.028571 0-9.142857 4.114286-9.142857 9.142857v64c0 5.028571 4.114286 9.142857 9.142857 9.142857h566.857143v786.285715c0 5.028571 4.114286 9.142857 9.142857 9.142857h64c5.028571 0 9.142857-4.114286 9.142857-9.142857V36.571429c0-20.228571-16.342857-36.571429-36.571428-36.571429zM731.428571 146.285714H146.285714c-20.228571 0-36.571429 16.342857-36.571428 36.571429v606.514286c0 9.714286 3.885714 18.971429 10.742857 25.828571l198.057143 198.057143c2.514286 2.514286 5.371429 4.571429 8.457143 6.285714v2.171429h4.8c4 1.485714 8.228571 2.285714 12.571428 2.285714H731.428571c20.228571 0 36.571429-16.342857 36.571429-36.571429V182.857143c0-20.228571-16.342857-36.571429-36.571429-36.571429zM363.428571 950.857143h-0.228571L192 779.657143v-0.228572h171.428571v171.428572z"></path></symbol><symbol id="icon-transfer" viewBox="0 0 1024 1024"><path d="M769.841131 507.345455a31.340606 31.340606 0 0 0-44.187151 0 30.947556 30.947556 0 0 0 0 43.959596l179.613737 178.424242H43.618263a31.030303 31.030303 0 1 0 0 62.060606h861.390868L725.385051 970.472727a30.947556 30.947556 0 0 0 0 43.959596c6.237091 6.206061 14.03604 9.050505 22.093575 9.050505 8.067879 0 16.115071-3.10303 22.093576-9.050505l232.892768-231.692929a30.616566 30.616566 0 0 0 9.102222-21.979798c0-8.274747-3.382303-16.290909-9.102222-21.979798L769.861818 507.345455zM254.158869 516.654545c6.237091 6.206061 14.025697 9.050505 22.093575 9.050506 8.057535 0 16.115071-3.10303 22.093576-9.050506a30.947556 30.947556 0 0 0 0-43.959596L118.732283 294.012121h861.401212a31.030303 31.030303 0 0 0 31.185454-31.030303c0-17.066667-14.03604-31.030303-31.195797-31.030303H118.990869L298.614949 53.268687a30.947556 30.947556 0 0 0 0-43.959596 31.340606 31.340606 0 0 0-44.187151 0L21.514343 241.00202a30.947556 30.947556 0 0 0 0 43.959596l232.623839 231.692929z" fill="#2E323F"></path></symbol><symbol id="icon-arrow" viewBox="0 0 1024 1024"><path d="M20.48 245.76h983.04L512 778.24z"></path></symbol></svg>
+	<header class="ss-header">
+	<nav class="navbar" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<a class="logo-link" href="/sofa2/">
+				<img class="logo" src="/sofa2/img/logo.png" href="/sofa2/img/logo.png">
+			</a>
+			<div class="-show-mobile">
+				<a id="mobile-menu-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-menu"></use>
+					</svg>
+				</a>
+				<nav id="mobile-menu">
+						<div id="js-menu-search-mobile" class="navbar-search-mobile">
+							<input class="input" placeholder="请输入要搜索的关键词">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-search"></use>
+							</svg>
+						</div>
+					
+          
+            <a class="" href="/sofa2/projects/">
+              <span>
+                项目
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/guides/">
+              <span>
+                指南
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/blog/">
+              <span>
+                博客
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/activities/">
+              <span>
+                活动
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/community/">
+              <span>
+                社区
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/awesome/">
+              <span>
+                Awesome SOFA
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+					
+            
+              <a href="/sofa2/en/guides/kc-cloud-mesh-demo/">
+                <span>English</span>
+                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-transfer"></use></svg>
+              </a>
+						
+					
+				</nav>
+			</div>
+		</div>
+
+		<div class="navbar-menu -hidden-mobile">
+			<div class="navbar-start">
+				
+				
+					<a class="navbar-item " href="/sofa2/projects/">项目</a>
+				
+					<a class="navbar-item " href="/sofa2/guides/">指南</a>
+				
+					<a class="navbar-item " href="/sofa2/blog/">博客</a>
+				
+					<a class="navbar-item " href="/sofa2/activities/">活动</a>
+				
+					<a class="navbar-item " href="/sofa2/community/">社区</a>
+				
+					<a class="navbar-item " href="/sofa2/awesome/">Awesome SOFA</a>
+				
+			</div>
+			<div class="navbar-end">
+				<div class="navbar-item">
+					<div id="js-menu-search" class="navbar-search">
+						<input class="input" placeholder="请输入要搜索的关键词">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-search"></use>
+						</svg>
+					</div>
+				</div>
+				<div class="navbar-item">
+					
+						
+							<a class="translation" href="/sofa2/en/guides/kc-cloud-mesh-demo/">En</a>
+						
+					
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+<div class="ss-layout-container">
+	<main class="ss-layout-main -card">
+		<div class="ss-meta">
+	<h1 class="title">
+		使用 CloudMesh 轻松实践 Service Mesh
+	</h1>
+	<div class="meta"></div>
+</div>
+		<article class="typo">
+	
+</article>
+		
+
+	<nav class="ss-pagination-next">
+		<a class="link-prev" href="/sofa2/guides/sofastack-quick-start/">
+			<span class="text">上一篇: </span>
+			<span class="text">使用 SOFAStack 快速构建微服务</span>
+		</a>
+		<a class="link-next" href="/sofa2/guides/sofastack-demos/">
+			<span class="text">下一篇: </span>
+			<span class="text">SOFAStack Demos</span>
+		</a>
+	</nav>
+
+	</main>
+
+	<aside class="ss-layout-aside">
+		<div class="ss-card">
+	<h2 class="card-title">
+		获取代码
+	</h2>
+	<div id="js-code" class="ss-aside-code">
+		<div class="button-group">
+			<button class="button -selected">HTTPS</button>
+			<button class="button">SSH</button>
+		</div>
+		<div class="input-group">
+			<input class="input" value="https://github.com/sofastack-guides/kc-cloud-mesh-demo" spellcheck="false">
+			<span class="addon">
+				<svg class="icon copy" aria-hidden="true"><use xlink:href="#icon-copy"></use></svg>
+				<svg class="icon tick" aria-hidden="true"><use xlink:href="#icon-ictick"></use></svg>
+			</span>
+		</div>
+		<a class="button download" href="#">下载 ZIP</a>
+	</div>
+</div>
+		
+	<div class="ss-card">
+		<h2 class="card-title">
+			项目
+		</h2>
+		<div class="ss-aside-project">
+			
+				<a class="link" href="#">SOFAMesh</a>
+			
+		</div>
+	</div>
+
+		
+
+	</aside>
+</div>
+
+
+
+	
+
+
+<footer class="ss-footer">
+	<div class="container">
+		<div class="links">
+			
+				<div class="cate">
+					<h2 class="cate-title">资源</h2>
+					
+						<a class="link" href="#">Github</a>
+					
+						<a class="link" href="#">Gitee</a>
+					
+						<a class="link" href="#">示例</a>
+					
+				</div>
+			
+				<div class="cate">
+					<h2 class="cate-title">社交媒体</h2>
+					
+						<a class="link" href="#">知乎专栏</a>
+					
+						<a class="link" href="#">新浪微博</a>
+					
+						<a class="link" href="#">Twitter</a>
+					
+				</div>
+			
+				<div class="cate">
+					<h2 class="cate-title">参与进来</h2>
+					
+						<a class="link" href="#">反馈</a>
+					
+						<a class="link" href="#">社区</a>
+					
+						<a class="link" href="#">Wiki</a>
+					
+						<a class="link" href="#">Email</a>
+					
+						<a class="link" href="/sofa2/hr/">加入我们</a>
+					
+				</div>
+			
+				<div class="cate">
+					<h2 class="cate-title">蚂蚁集团开源项目</h2>
+					
+						<a class="link" href="#">Ant Design</a>
+					
+						<a class="link" href="#">Egg </a>
+					
+						<a class="link" href="#">SQLFlow</a>
+					
+						<a class="link" href="#">更多</a>
+					
+				</div>
+			
+		</div>
+		<div class="qrcode">
+			
+				<div>
+					<img class="qrcode-img" src="/sofa2/img/qrcode/qrcode_video.png" href="/sofa2/img/qrcode/qrcode_video.png">
+					<p class="qrcode-desc">微信视频号</p>
+				</div>
+			
+				<div>
+					<img class="qrcode-img" src="/sofa2/img/qrcode/qrcode_1.png" href="/sofa2/img/qrcode/qrcode_1.png">
+					<p class="qrcode-desc">微信公众号</p>
+				</div>
+			
+				<div>
+					<img class="qrcode-img" src="/sofa2/img/qrcode/dingtalk_7.jpg" href="/sofa2/img/qrcode/dingtalk_7.jpg">
+					<p class="qrcode-desc">钉钉群</p>
+				</div>
+			
+		</div>
+	</div>
+	<div class="copyright">
+		<p>
+			© 2018 - 2022  The SOFAStack Authors
+			<a href="#">浙 ICP 备 16045294 号-3</a>
+		</p>
+	</div>
+</footer>
+
+
+
+<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" focusable="false" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg></body></html>

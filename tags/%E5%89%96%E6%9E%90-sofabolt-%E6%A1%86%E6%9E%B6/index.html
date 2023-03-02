@@ -1,0 +1,633 @@
+<!DOCTYPE html><html><head>
+	<title>
+	
+	
+		SOFAStack
+	
+</title>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="SOFAStack is a Scalable Open Financial Architecture for building cloud native applications">
+
+<meta name="generator" content="Hugo 0.55.5"><link rel="shortcut icon" href="https://gw.alipayobjects.com/os/q/cms/images/jqu9346l/4ba95631-2489-4885-881f-bc7f8d787d5e_w64_h61.png" type="image/png">
+
+<link href="https://unpkg.com/purecss@1.0.0/build/base-min.css" rel="stylesheet">
+
+
+
+<link href="/sofa2/css/main.css" rel="stylesheet" src="/sofa2/css/main.css">
+<link href="/sofa2/css/zoom-image.css" rel="stylesheet" src="/sofa2/css/zoom-image.css">
+
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="/sofa2/js/iconfont.js" href="/sofa2/js/iconfont.js"></script>
+<script src="/sofa2/js/highlight.pack.js" href="/sofa2/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>window.SITE_LANGUAGE = "zh"</script>
+<script src="/sofa2/js/app.js" href="/sofa2/js/app.js"></script>
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-142131411-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+<body><svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;"><symbol id="icon-ictick" viewBox="0 0 1024 1024"><path d="M980.96 299.904l-528.864 528.864c-24.384 24.384-61.536 28.192-89.952 11.392-5.216-3.104-10.208-6.912-14.72-11.392 0-0.032 0-0.032 0-0.032l-304.448-304.416c-28.896-28.896-28.896-75.808 0-104.704s75.744-28.896 104.672 0l252.192 252.192 476.48-476.576c28.896-28.896 75.744-28.896 104.64 0 28.928 28.896 28.928 75.808 0 104.672l0 0z"></path></symbol><symbol id="icon-search" viewBox="0 0 1024 1024"><path d="M927.104 866.816l-195.626667-208.768C780.629333 601.770667 810.666667 528.426667 810.666667 448 810.666667 271.530667 667.136 128 490.666667 128S170.666667 271.530667 170.666667 448 314.197333 768 490.666667 768c65.322667 0 126.08-19.754667 176.768-53.461333l197.461333 210.688L927.104 866.816zM256 448C256 318.592 361.258667 213.333333 490.666667 213.333333S725.333333 318.592 725.333333 448 620.074667 682.666667 490.666667 682.666667 256 577.408 256 448z"></path></symbol><symbol id="icon-menu1" viewBox="0 0 1024 1024"><path d="M225.854934 210.432687l-93.071745 0c-2.49789 0-4.523013 2.025123-4.523013 4.523013l0 93.071745c0 2.49789 2.025123 4.523013 4.523013 4.523013l93.071745 0c2.49789 0 4.523013-2.025123 4.523013-4.523013l0-93.071745C230.377948 212.45781 228.352825 210.432687 225.854934 210.432687z"></path><path d="M868.248703 210.432687 302.545594 210.432687c-15.182794 0-27.491121 2.025123-27.491121 4.523013l0 93.071745c0 2.49789 12.308327 4.523013 27.491121 4.523013L868.248703 312.550459c15.182794 0 27.491121-2.025123 27.491121-4.523013l0-93.071745C895.739824 212.45781 883.431497 210.432687 868.248703 210.432687z"></path><path d="M225.854934 461.738269l-93.071745 0c-2.49789 0-4.523013 2.025123-4.523013 4.523013l0 93.071745c0 2.49789 2.025123 4.523013 4.523013 4.523013l93.071745 0c2.49789 0 4.523013-2.025123 4.523013-4.523013l0-93.071745C230.377948 463.763392 228.352825 461.738269 225.854934 461.738269z"></path><path d="M868.248703 461.738269 302.545594 461.738269c-15.182794 0-27.491121 2.025123-27.491121 4.523013l0 93.071745c0 2.49789 12.308327 4.523013 27.491121 4.523013L868.248703 563.856042c15.182794 0 27.491121-2.025123 27.491121-4.523013l0-93.071745C895.739824 463.763392 883.431497 461.738269 868.248703 461.738269z"></path><path d="M225.854934 711.448518l-93.071745 0c-2.49789 0-4.523013 2.025123-4.523013 4.523013l0 93.071745c0 2.49789 2.025123 4.523013 4.523013 4.523013l93.071745 0c2.49789 0 4.523013-2.025123 4.523013-4.523013l0-93.071745C230.377948 713.473641 228.352825 711.448518 225.854934 711.448518z"></path><path d="M868.248703 711.448518 302.545594 711.448518c-15.182794 0-27.491121 2.025123-27.491121 4.523013l0 93.071745c0 2.49789 12.308327 4.523013 27.491121 4.523013L868.248703 813.56629c15.182794 0 27.491121-2.025123 27.491121-4.523013l0-93.071745C895.739824 713.473641 883.431497 711.448518 868.248703 711.448518z"></path></symbol><symbol id="icon-close" viewBox="0 0 1024 1024"><path d="M556.8 512l265.6-265.6c12.8-12.8 12.8-32 0-44.8s-32-12.8-44.8 0L512 467.2 246.4 201.6c-12.8-12.8-32-12.8-44.8 0s-12.8 32 0 44.8l265.6 265.6-265.6 265.6c-12.8 12.8-12.8 32 0 44.8 6.4 6.4 12.8 9.6 22.4 9.6s16-3.2 22.4-9.6l265.6-265.6 265.6 265.6c6.4 6.4 16 9.6 22.4 9.6s16-3.2 22.4-9.6c12.8-12.8 12.8-32 0-44.8L556.8 512z"></path></symbol><symbol id="icon-menu" viewBox="0 0 1024 1024"><path d="M128 298.666667h768a42.666667 42.666667 0 0 0 0-85.333334H128a42.666667 42.666667 0 0 0 0 85.333334z m768 170.666666H128a42.666667 42.666667 0 0 0 0 85.333334h768a42.666667 42.666667 0 0 0 0-85.333334z m0 256H128a42.666667 42.666667 0 0 0 0 85.333334h768a42.666667 42.666667 0 0 0 0-85.333334z"></path></symbol><symbol id="icon-ARROW" viewBox="0 0 1024 1024"><path d="M318.73024 836.32128a20.41856 20.41856 0 0 0 28.95872 0l307.2-307.2a20.45952 20.45952 0 0 0 0-28.95872l-307.2-307.2a20.45952 20.45952 0 1 0-28.95872 28.95872l292.72064 292.72064-292.72064 292.72064a20.45952 20.45952 0 0 0 0 28.95872z" fill="#231F20"></path></symbol><symbol id="icon-copy" viewBox="0 0 1024 1024"><path d="M877.714286 0H265.142857c-5.028571 0-9.142857 4.114286-9.142857 9.142857v64c0 5.028571 4.114286 9.142857 9.142857 9.142857h566.857143v786.285715c0 5.028571 4.114286 9.142857 9.142857 9.142857h64c5.028571 0 9.142857-4.114286 9.142857-9.142857V36.571429c0-20.228571-16.342857-36.571429-36.571428-36.571429zM731.428571 146.285714H146.285714c-20.228571 0-36.571429 16.342857-36.571428 36.571429v606.514286c0 9.714286 3.885714 18.971429 10.742857 25.828571l198.057143 198.057143c2.514286 2.514286 5.371429 4.571429 8.457143 6.285714v2.171429h4.8c4 1.485714 8.228571 2.285714 12.571428 2.285714H731.428571c20.228571 0 36.571429-16.342857 36.571429-36.571429V182.857143c0-20.228571-16.342857-36.571429-36.571429-36.571429zM363.428571 950.857143h-0.228571L192 779.657143v-0.228572h171.428571v171.428572z"></path></symbol><symbol id="icon-transfer" viewBox="0 0 1024 1024"><path d="M769.841131 507.345455a31.340606 31.340606 0 0 0-44.187151 0 30.947556 30.947556 0 0 0 0 43.959596l179.613737 178.424242H43.618263a31.030303 31.030303 0 1 0 0 62.060606h861.390868L725.385051 970.472727a30.947556 30.947556 0 0 0 0 43.959596c6.237091 6.206061 14.03604 9.050505 22.093575 9.050505 8.067879 0 16.115071-3.10303 22.093576-9.050505l232.892768-231.692929a30.616566 30.616566 0 0 0 9.102222-21.979798c0-8.274747-3.382303-16.290909-9.102222-21.979798L769.861818 507.345455zM254.158869 516.654545c6.237091 6.206061 14.025697 9.050505 22.093575 9.050506 8.057535 0 16.115071-3.10303 22.093576-9.050506a30.947556 30.947556 0 0 0 0-43.959596L118.732283 294.012121h861.401212a31.030303 31.030303 0 0 0 31.185454-31.030303c0-17.066667-14.03604-31.030303-31.195797-31.030303H118.990869L298.614949 53.268687a30.947556 30.947556 0 0 0 0-43.959596 31.340606 31.340606 0 0 0-44.187151 0L21.514343 241.00202a30.947556 30.947556 0 0 0 0 43.959596l232.623839 231.692929z" fill="#2E323F"></path></symbol><symbol id="icon-arrow" viewBox="0 0 1024 1024"><path d="M20.48 245.76h983.04L512 778.24z"></path></symbol></svg>
+	<header class="ss-header">
+	<nav class="navbar" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<a class="logo-link" href="/sofa2/">
+				<img class="logo" src="/sofa2/img/logo.png" href="/sofa2/img/logo.png">
+			</a>
+			<div class="-show-mobile">
+				<a id="mobile-menu-icon">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-menu"></use>
+					</svg>
+				</a>
+				<nav id="mobile-menu">
+						<div id="js-menu-search-mobile" class="navbar-search-mobile">
+							<input class="input" placeholder="请输入要搜索的关键词">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-search"></use>
+							</svg>
+						</div>
+					
+          
+            <a class="" href="/sofa2/projects/">
+              <span>
+                项目
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/guides/">
+              <span>
+                指南
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/blog/">
+              <span>
+                博客
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/activities/">
+              <span>
+                活动
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/community/">
+              <span>
+                社区
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+            <a class="" href="/sofa2/awesome/">
+              <span>
+                Awesome SOFA
+              </span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-ARROW"></use></svg>
+            </a>
+					
+					
+				</nav>
+			</div>
+		</div>
+
+		<div class="navbar-menu -hidden-mobile">
+			<div class="navbar-start">
+				
+				
+					<a class="navbar-item " href="/sofa2/projects/">项目</a>
+				
+					<a class="navbar-item " href="/sofa2/guides/">指南</a>
+				
+					<a class="navbar-item " href="/sofa2/blog/">博客</a>
+				
+					<a class="navbar-item " href="/sofa2/activities/">活动</a>
+				
+					<a class="navbar-item " href="/sofa2/community/">社区</a>
+				
+					<a class="navbar-item " href="/sofa2/awesome/">Awesome SOFA</a>
+				
+			</div>
+			<div class="navbar-end">
+				<div class="navbar-item">
+					<div id="js-menu-search" class="navbar-search">
+						<input class="input" placeholder="请输入要搜索的关键词">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-search"></use>
+						</svg>
+					</div>
+				</div>
+				<div class="navbar-item">
+					
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+<div class="home-background -no-max-width">
+	<img src="/sofa2/img/cover-light.jpg" href="/sofa2/img/cover-light.jpg">
+</div>
+
+<div class="ss-layout-container">
+	<main class="ss-layout-main">
+		
+			<article class="ss-summary ss-card">
+	
+	
+		
+			
+			
+			
+				
+			
+		
+	
+
+	<img class="cover" src="/sofa2/blog/sofa-bolt-framework-deep-dive/cover.jpg" href="/sofa2/blog/sofa-bolt-framework-deep-dive/cover.jpg">
+	<div class="container">
+		<h2 class="title"><a href="/sofa2/blog/sofa-bolt-framework-deep-dive/"> 蚂蚁金服开源通信框架 SOFABolt 协议框架解析</a></h2>
+		<div class="meta">
+			2018-12-06 · 颜洄、丞一
+		</div>
+		<div class="summary">
+			
+				本文是对蚂蚁金服开源通信框架 SOFABolt 的协议框架解析。
+			
+		</div>
+		<div class="tags">
+			
+				
+					<a class="tag" href="/sofa2/tags/sofabolt/" rel="tag">#SOFABolt</a>
+				
+					<a class="tag" href="/sofa2/tags/sofalab/" rel="tag">#SOFALab</a>
+				
+					<a class="tag" href="/sofa2/tags/%E5%89%96%E6%9E%90-sofabolt-%E6%A1%86%E6%9E%B6/" rel="tag">#剖析 | SOFABolt 框架</a>
+				
+			
+		</div>
+	</div>
+</article>
+		
+			<article class="ss-summary ss-card">
+	
+	
+		
+			
+			
+			
+				
+			
+		
+	
+
+	<img class="cover" src="/sofa2/blog/sofa-bolt-serialization-deep-dive/cover.jpg" href="/sofa2/blog/sofa-bolt-serialization-deep-dive/cover.jpg">
+	<div class="container">
+		<h2 class="title"><a href="/sofa2/blog/sofa-bolt-serialization-deep-dive/"> 蚂蚁金服开源通信框架SOFABolt解析之序列化机制</a></h2>
+		<div class="meta">
+			2018-12-06 · 鲁道
+		</div>
+		<div class="summary">
+			
+				SOFABolt 是一款基于 Netty 最佳实践，通用、高效、稳定的通信框架，本文将重点分析 SOFABolt 的序列化机制。
+			
+		</div>
+		<div class="tags">
+			
+				
+					<a class="tag" href="/sofa2/tags/sofabolt/" rel="tag">#SOFABolt</a>
+				
+					<a class="tag" href="/sofa2/tags/sofalab/" rel="tag">#SOFALab</a>
+				
+					<a class="tag" href="/sofa2/tags/%E5%89%96%E6%9E%90-sofabolt-%E6%A1%86%E6%9E%B6/" rel="tag">#剖析 | SOFABolt 框架</a>
+				
+			
+		</div>
+	</div>
+</article>
+		
+			<article class="ss-summary ss-card">
+	
+	
+		
+			
+			
+			
+				
+			
+		
+	
+
+	<img class="cover" src="/sofa2/blog/sofa-bolt-codec-deep-dive/cover.jpg" href="/sofa2/blog/sofa-bolt-codec-deep-dive/cover.jpg">
+	<div class="container">
+		<h2 class="title"><a href="/sofa2/blog/sofa-bolt-codec-deep-dive/"> 蚂蚁金服开源通信框架SOFABolt解析之编解码机制</a></h2>
+		<div class="meta">
+			2018-12-06 · 水寒
+		</div>
+		<div class="summary">
+			
+				本篇我们会依次介绍编解码的概念， TCP 粘包拆包问题，SOFABolt 私有通信协议的设计，以及SOFABolt 编解码原理，最后还会介绍一下相较于 Netty，我们做出的优化。
+			
+		</div>
+		<div class="tags">
+			
+				
+					<a class="tag" href="/sofa2/tags/sofabolt/" rel="tag">#SOFABolt</a>
+				
+					<a class="tag" href="/sofa2/tags/sofalab/" rel="tag">#SOFALab</a>
+				
+					<a class="tag" href="/sofa2/tags/%E5%89%96%E6%9E%90-sofabolt-%E6%A1%86%E6%9E%B6/" rel="tag">#剖析 | SOFABolt 框架</a>
+				
+			
+		</div>
+	</div>
+</article>
+		
+			<article class="ss-summary ss-card">
+	
+	
+		
+			
+			
+			
+				
+			
+		
+	
+
+	<img class="cover" src="/sofa2/blog/sofa-bolt-timeout-and-heart-beat-deep-dive/cover.jpg" href="/sofa2/blog/sofa-bolt-timeout-and-heart-beat-deep-dive/cover.jpg">
+	<div class="container">
+		<h2 class="title"><a href="/sofa2/blog/sofa-bolt-timeout-and-heart-beat-deep-dive/"> 蚂蚁金服开源通信框架SOFABolt解析之超时控制机制及心跳机制</a></h2>
+		<div class="meta">
+			2018-12-06 · 胡萝卜、丞一
+		</div>
+		<div class="summary">
+			
+				本篇我们会依次介绍编解码的概念， TCP 粘包拆包问题，SOFABolt 私有通信协议的设计，以及SOFABolt 编解码原理，最后还会介绍一下相较于 Netty，我们做出的优化。
+			
+		</div>
+		<div class="tags">
+			
+				
+					<a class="tag" href="/sofa2/tags/sofabolt/" rel="tag">#SOFABolt</a>
+				
+					<a class="tag" href="/sofa2/tags/sofalab/" rel="tag">#SOFALab</a>
+				
+					<a class="tag" href="/sofa2/tags/%E5%89%96%E6%9E%90-sofabolt-%E6%A1%86%E6%9E%B6/" rel="tag">#剖析 | SOFABolt 框架</a>
+				
+			
+		</div>
+	</div>
+</article>
+		
+			<article class="ss-summary ss-card">
+	
+	
+		
+			
+			
+			
+				
+			
+		
+	
+
+	<img class="cover" src="/sofa2/blog/sofa-blot-connection-management-deep-dive/cover.jpg" href="/sofa2/blog/sofa-blot-connection-management-deep-dive/cover.jpg">
+	<div class="container">
+		<h2 class="title"><a href="/sofa2/blog/sofa-blot-connection-management-deep-dive/"> 蚂蚁金服开源通信框架SOFABolt解析之连接管理剖析</a></h2>
+		<div class="meta">
+			2018-12-06 · 任展
+		</div>
+		<div class="summary">
+			
+				本文将重点分析 SOFABolt 的连接管理功能。
+			
+		</div>
+		<div class="tags">
+			
+				
+					<a class="tag" href="/sofa2/tags/sofabolt/" rel="tag">#SOFABolt</a>
+				
+					<a class="tag" href="/sofa2/tags/sofalab/" rel="tag">#SOFALab</a>
+				
+					<a class="tag" href="/sofa2/tags/%E5%89%96%E6%9E%90-sofabolt-%E6%A1%86%E6%9E%B6/" rel="tag">#剖析 | SOFABolt 框架</a>
+				
+			
+		</div>
+	</div>
+</article>
+		
+
+		
+
+
+	</main>
+
+	<aside class="ss-layout-aside">
+		
+		
+
+
+		<div class="ss-aside-tags ss-card">
+	<h2 class="card-title">
+		标签
+		<span class="card-extra">全部展开</span>
+	</h2>
+	<ul class="tag-list">
+		
+			<li class="tag"><a href="/sofa2/tags/1024/">1024</a></li>
+		
+			<li class="tag"><a href="/sofa2/tags/api-gateway/">API Gateway </a></li>
+		
+			<li class="tag"><a href="/sofa2/tags/cafedeployment/">CafeDeployment</a></li>
+		
+			<li class="tag"><a href="/sofa2/tags/cloud-native/">Cloud Native</a></li>
+		
+			<li class="tag"><a href="/sofa2/tags/cncf/">CNCF</a></li>
+		
+			<li class="tag"><a href="/sofa2/tags/db-mesh/">DB Mesh</a></li>
+		
+			<li class="tag"><a href="/sofa2/tags/dragonfly/">Dragonfly</a></li>
+		
+			<li class="tag"><a href="/sofa2/tags/elasticdl/">ElasticDL</a></li>
+		
+			<li class="tag"><a href="/sofa2/tags/http/3/">HTTP/3</a></li>
+		
+			<li class="tag"><a href="/sofa2/tags/http/quic/">HTTP/QUIC</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/kata-container/">Kata Container</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/kata-containers/">Kata Containers</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/knative/">Knative</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/kubecon/">KubeCon</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/kubernetes/">Kubernetes</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/meetup/">Meetup</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/mosn/">MOSN</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/nydus/">Nydus</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/occlum/">Occlum</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/rpc-%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E7%9A%84%E8%80%83%E5%92%8C%E9%87%8F/">RPC 框架设计的考和量</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/seata/">seata</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/serverless/">Serverless</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/serverlesstask/">ServerlessTask</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/service-mesh/">Service Mesh</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/service-mesh-meetup/">Service Mesh Meetup</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/service-mesh-virtual-meetup/">Service Mesh Virtual Meetup</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/service-mesh-webinar/">Service Mesh Webinar</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/service-mesh-%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5/">Service Mesh 落地实践</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sidecar-%E5%AE%B9%E5%99%A8/">Sidecar 容器</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofa/">SOFA</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofa-weekly/">SOFA Weekly</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofaacts/">SOFAActs</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofaark/">SOFAArk</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofaarklab/">SOFAArkLab</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofabolt/">SOFABolt</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofaboot/">SOFABoot</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofachannel/">SOFAChannel</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofadashboard/">SOFADashboard</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofaenclave/">SOFAEnclave</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofajraft/">SOFAJRaft</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofajraft-%E7%89%B9%E6%80%A7%E8%A7%A3%E6%9E%90/">SOFAJRaft 特性解析</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofalab/">SOFALab</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofalookout/">SOFALookout</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofameetup/">SOFAMeetup</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofamesh/">SOFAMesh</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofaregistry/">SOFARegistry</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofarpc/">SOFARPC</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofastack/">SOFAStack</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofatalk/">SOFATalk</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sofatracer/">SOFATracer</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/springboot/">SpringBoot</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/sqlflow/">SQLFlow</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/summer-2021/">Summer 2021</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/workshop/">Workshop</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/zsearch/">ZSearch</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E4%BA%91%E5%8E%9F%E7%94%9F/">云原生</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/">任务调度</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E4%BD%A0%E7%9A%84%E5%BC%80%E6%BA%90%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">你的开源入门指南</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">分布式事务</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84/">分布式架构</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%89%96%E6%9E%90-sofaark-%E6%BA%90%E7%A0%81/">剖析 | SOFAArk 源码 </a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%89%96%E6%9E%90-sofabolt-%E6%A1%86%E6%9E%B6/">剖析 | SOFABolt 框架</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%89%96%E6%9E%90-sofaboot-%E6%A1%86%E6%9E%B6/">剖析 | SOFABoot 框架</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%89%96%E6%9E%90-sofajraft-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">剖析 | SOFAJRaft 实现原理</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%89%96%E6%9E%90-sofaregistry-%E6%A1%86%E6%9E%B6/">剖析 | SOFARegistry 框架</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%89%96%E6%9E%90-sofarpc-%E6%A1%86%E6%9E%B6/">剖析 | SOFARPC 框架</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%89%96%E6%9E%90-sofatracer-%E6%A1%86%E6%9E%B6/">剖析 | SOFATracer 框架</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%AE%9E%E8%B7%B5/">实践</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%BC%80%E6%BA%90/">开源</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%BC%80%E6%BA%90%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%BC%94%E8%BF%9B%E4%B8%8E%E6%9C%AA%E6%9D%A5/">开源容器镜像加速服务的演进与未来</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%BC%B9%E6%80%A7%E4%BC%B8%E7%BC%A9/">弹性伸缩</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E6%96%87%E4%BB%B6%E5%92%8C%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E7%B3%BB%E7%BB%9F/">文件和镜像加速系统</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E6%99%BA%E8%83%BD%E7%9B%91%E6%8E%A7/">智能监控</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E6%99%BA%E8%83%BD%E8%BF%90%E7%BB%B4/">智能运维</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E6%BA%90%E5%88%9B%E4%BC%9A/">源创会</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">“源码解析”</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E7%B1%BB%E9%9A%94%E7%A6%BB%E6%A1%86%E6%9E%B6/">类隔离框架</a></li>
+		
+			<li class="tag" style="display: none;"><a href="/sofa2/tags/%E9%95%9C%E5%83%8F/">镜像</a></li>
+		
+	</ul>
+</div>
+	</aside>
+</div>
+
+
+
+	
+
+
+<footer class="ss-footer">
+	<div class="container">
+		<div class="links">
+			
+				<div class="cate">
+					<h2 class="cate-title">资源</h2>
+					
+						<a class="link" href="#">Github</a>
+					
+						<a class="link" href="#">Gitee</a>
+					
+						<a class="link" href="#">示例</a>
+					
+				</div>
+			
+				<div class="cate">
+					<h2 class="cate-title">社交媒体</h2>
+					
+						<a class="link" href="#">知乎专栏</a>
+					
+						<a class="link" href="#">新浪微博</a>
+					
+						<a class="link" href="#">Twitter</a>
+					
+				</div>
+			
+				<div class="cate">
+					<h2 class="cate-title">参与进来</h2>
+					
+						<a class="link" href="#">反馈</a>
+					
+						<a class="link" href="#">社区</a>
+					
+						<a class="link" href="#">Wiki</a>
+					
+						<a class="link" href="#">Email</a>
+					
+						<a class="link" href="/sofa2/hr/">加入我们</a>
+					
+				</div>
+			
+				<div class="cate">
+					<h2 class="cate-title">蚂蚁集团开源项目</h2>
+					
+						<a class="link" href="#">Ant Design</a>
+					
+						<a class="link" href="#">Egg </a>
+					
+						<a class="link" href="#">SQLFlow</a>
+					
+						<a class="link" href="#">更多</a>
+					
+				</div>
+			
+		</div>
+		<div class="qrcode">
+			
+				<div>
+					<img class="qrcode-img" src="/sofa2/img/qrcode/qrcode_video.png" href="/sofa2/img/qrcode/qrcode_video.png">
+					<p class="qrcode-desc">微信视频号</p>
+				</div>
+			
+				<div>
+					<img class="qrcode-img" src="/sofa2/img/qrcode/qrcode_1.png" href="/sofa2/img/qrcode/qrcode_1.png">
+					<p class="qrcode-desc">微信公众号</p>
+				</div>
+			
+				<div>
+					<img class="qrcode-img" src="/sofa2/img/qrcode/dingtalk_7.jpg" href="/sofa2/img/qrcode/dingtalk_7.jpg">
+					<p class="qrcode-desc">钉钉群</p>
+				</div>
+			
+		</div>
+	</div>
+	<div class="copyright">
+		<p>
+			© 2018 - 2022  The SOFAStack Authors
+			<a href="#">浙 ICP 备 16045294 号-3</a>
+		</p>
+	</div>
+</footer>
+
+
+
+<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" focusable="false" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg></body></html>
